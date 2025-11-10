@@ -1,79 +1,708 @@
-:root{
-  --bg:#0b1020;
-  --muted:#8a94a7;
-  --text:#e7ecf4;
-  --card:#121833;
-  --accent:#6cc3ff;
-  --accent-2:#4aa8ec;
+/* 기본 리셋 및 폰트 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Arial, sans-serif;
-  background: linear-gradient(180deg, #0b1020 0%, #0e1530 100%);
-  color:var(--text);
-  line-height:1.6;
+
+html {
+    scroll-behavior: smooth;
 }
-.section{ padding:72px 20px; max-width: 1100px; margin: 0 auto; }
-h1,h2,h3{ margin:0 0 12px; line-height:1.2; }
-h2{ font-size: 32px; margin-bottom: 24px; }
-p{ margin: 0 0 12px; color:var(--muted); }
-a{ color: var(--accent); text-decoration: none; }
-a:hover{ text-decoration: underline; }
-.site-header{
-  position: sticky; top:0; z-index: 50;
-  background: rgba(11,16,32,0.8); backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+body {
+    font-family: 'Noto Sans KR', 'Inter', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #000000;
 }
-.nav{ display:flex; align-items:center; justify-content: space-between; max-width:1100px; margin:0 auto; padding:14px 20px;}
-.logo{ font-weight:800; letter-spacing:.2px; }
-.nav-links{ list-style:none; display:flex; gap:18px; margin:0; padding:0; }
-.nav-links a{ padding:8px 10px; border-radius: 10px; }
-.nav-links a:hover{ background: rgba(255,255,255,0.06); text-decoration:none; }
-.nav-toggle{ display:none; background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.2); padding:6px 10px; border-radius:8px; }
-.hero{
-  padding: 96px 20px 72px; text-align:center; max-width: 900px; margin: 0 auto;
+
+/* 내비게이션 바 */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 5%; /* 패딩을 줄여 높이 감소 */
+    display: flex;
+    justify-content: space-between; /* flex-end -> space-between 변경 */
+    align-items: center; /* align-items 추가 */
+    z-index: 1000;
 }
-.hero h1{ font-size: 40px; font-weight: 800; }
-.accent{ color: var(--accent); }
-.btn{
-  display:inline-block; margin-top:18px; padding:12px 18px; border-radius:12px;
-  background: var(--accent); color:#061325; font-weight:700;
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
 }
-.btn:hover{ background: var(--accent-2); text-decoration:none; }
-.about-grid{ display:grid; grid-template-columns: 160px 1fr; gap:20px; align-items:center; }
-.avatar{ width:160px; height:160px; object-fit:cover; border-radius:50%; border:3px solid rgba(255,255,255,0.15); }
-.tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 0; padding:0; list-style:none; }
-.tags li{ background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); padding:6px 10px; border-radius:999px; color:var(--text);}
-.grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
-.card{
-  background: var(--card); border:1px solid rgba(255,255,255,0.08);
-  border-radius:16px; padding:18px;
-  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem; /* 폰트 크기 살짝 줄임 */
+    padding: 0.5rem 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
-.card:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.25); background: #172042; }
-.card h3{ margin-bottom:6px; }
-.link{ margin-right:10px; }
-.contact-form{ max-width:720px; margin: 0 auto; }
-.row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-input, textarea{
-  width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.04); color: var(--text); outline:none;
+
+nav a:hover {
+    color: #4A4A4A; /* 챠콜색에서 짙은 회색으로 변경 */
 }
-textarea{ min-height: 140px; resize: vertical; }
-.actions{ display:flex; align-items:center; gap:12px; margin-top: 10px; }
-.hint{ color:var(--muted); font-size: 14px; }
-.status{ margin-top:10px; font-weight:700; }
-.status.ok{ color:#95f3c7; }
-.status.err{ color:#ff9aa2; }
-.site-footer{ padding: 36px 20px; text-align:center; color:var(--muted); border-top:1px solid rgba(255,255,255,0.06); }
-@media (max-width: 900px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+
+/* 내비게이션 활성 링크 스타일 */
+nav a.active {
+    color: #4A4A4A; /* 챠콜색에서 짙은 회색으로 변경 */
+    border-bottom: 2px solid #4A4A4A; /* 챠콜색에서 짙은 회색으로 변경 */
 }
-@media (max-width: 680px){
-  .about-grid{ grid-template-columns: 1fr; text-align:center; }
-  .row{ grid-template-columns: 1fr; }
-  .nav-toggle{ display:inline-block; }
-  .nav-links{ display:none; position:absolute; right:20px; top:56px; flex-direction:column; background: rgba(14,21,48,.98); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.08); }
-  .nav-links.open{ display:flex; }
+
+/* --- 다크 모드 토글 스위치 스타일 --- */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+}
+
+#darkModeToggle {
+    display: none; /* 실제 체크박스 숨기기 */
+}
+
+.toggle-label {
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 50px;
+    width: 60px; /* 너비 증가 */
+    height: 30px; /* 높이 증가 */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-label .fa-moon {
+    color: #f1c40f; /* 노란색 달 */
+}
+
+.toggle-label .fa-sun {
+    color: #f39c12; /* 주황색 해 */
+}
+
+.toggle-label .ball {
+    background-color: white;
+    width: 22px; /* 공 크기 증가 */
+    height: 22px; /* 공 크기 증가 */
+    border-radius: 50%;
+    position: absolute;
+    top: 4px; /* 위치 조정 */
+    left: 4px; /* 위치 조정 */
+    transition: transform 0.3s ease;
+}
+
+#darkModeToggle:checked + .toggle-label {
+    background-color: #4A4A4A; /* 활성 시 배경색 */
+}
+
+#darkModeToggle:checked + .toggle-label .ball {
+    transform: translateX(30px); /* 이동 거리 조정 */
+}
+
+
+/* 섹션 공통 스타일 */
+section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 5% 2rem; /* 위쪽 패딩은 고정된 nav 높이 고려 */
+}
+
+/* 섹션 내부 컨테이너 */
+.section-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* home-container에 justify-content 추가 */
+.home-container {
+    justify-content: center;
+}
+
+
+/* 홈 섹션 */
+#home .text-content {
+    /* flex: 1; 대신 flex-basis 사용 */
+    flex-basis: 500px; /* 텍스트 영역 너비 지정 */
+    text-align: left;
+}
+
+#home h1, #home h2 {
+    font-size: 3.8rem; /* 글자 크기 4.2rem -> 3.8rem으로 감소 */
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+/* --- 홈 섹션 자기소개 문구 스타일 (신규 추가) --- */
+#home .intro-subtitle {
+    font-size: 1.1rem; /* 폰트 크기 */
+    color: #555555; /* 기본 텍스트보다 살짝 연한 색 */
+    margin-top: 1.5rem; /* 이름과의 간격 */
+    line-height: 1.7;
+}
+
+/* '이름' 파란색, '입니다' 검은색 처리 */
+.name-highlight {
+    color: #002244; /* 더 짙은 남색으로 변경 */
+}
+
+#home .image-content {
+    /* flex: 1; 대신 flex-basis 사용 */
+    flex-basis: 400px; /* 이미지 영역 너비 지정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#home .image-content img {
+    width: 400px; /* 크기 확대 */
+    height: 400px; /* 크기 확대 */
+    border-radius: 50%; /* 다시 원형으로 변경 */
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 그림자 부드럽게 조정 */
+}
+
+/* About & Project 섹션 제목 */
+.section-title {
+    flex-basis: 30%; /* 제목이 차지할 너비 */
+    font-size: 3rem; /* 섹션 제목 글자 크기 감소 */
+    font-weight: 700;
+    color: #002244; /* 더 짙은 남색으로 변경 */
+}
+
+.section-title h2 {
+    margin: 0;
+}
+
+/* --- About 콘텐츠 래퍼 (신규 추가) --- */
+.about-content {
+    flex: 1; /* 나머지 공간을 모두 차지 */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* 설명과 그리드 사이의 간격 */
+}
+
+/* --- About 자기소개 문구 (신규 추가) --- */
+.about-description {
+    font-size: 1.05rem;
+    color: #555555;
+    line-height: 1.8;
+}
+
+
+/* 그리드 컨테이너 (About, Project) */
+.grid-container {
+    flex: 1; /* 나머지 공간을 모두 차지 */
+    display: grid;
+    gap: 2rem;
+}
+
+/* About 그리드 (2x2) */
+.about-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.about-grid .grid-item {
+    padding: 1.5rem;
+    text-align: left;
+    /* 테두리 없음 (요청사항) */
+    border-radius: 8px; /* 깔끔함을 위해 살짝 둥글게 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 'transform' 추가 */
+}
+
+.about-grid .grid-item:hover {
+    background-color: #f8f8f8; /* 마우스 오버 시 살짝 배경색 */
+    transform: translateY(-5px); /* 호버 시 살짝 위로 이동 */
+}
+
+.about-grid .grid-item i {
+    font-size: 2.5rem;
+    color: #4A4A4A; /* 짙은 회색으로 변경 */
+    margin-bottom: 1rem;
+}
+
+.about-grid .grid-item:hover {
+    background-color: #f0f0f0; /* 연한 회색 배경의 호버 색상 */
+}
+
+.about-grid .grid-item h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem; /* About 항목 제목 크기 감소 */
+}
+
+.about-grid .grid-item p {
+    font-size: 0.9rem; /* About 항목 내용 크기 감소 */
+}
+
+/* Project 그리드 (2x2) */
+.project-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 프로젝트 링크 스타일 */
+.project-link {
+    text-decoration: none;
+    color: inherit; /* 부모 요소의 텍스트 색상 상속 */
+}
+
+.project-card {
+    background-color: #ffffff; /* 프로젝트 카드 배경 흰색으로 변경 */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 그림자 연하게 변경 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: #000000; /* 카드 내부 텍스트 검은색으로 변경 */
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* 호버 시 그림자 연하게 변경 */
+    background-color: #ffffff; /* 호버 시에도 흰색 유지 */
+}
+
+.project-card img {
+    width: 100%;
+    display: block;
+    height: 200px; /* 이미지 높이 고정 */
+    object-fit: cover; /* 비율 유지하며 채우기 */
+}
+
+.project-card .project-info {
+    padding: 1.5rem;
+}
+
+.project-card h3 {
+    font-size: 1.25rem; /* 프로젝트 제목 크기 감소 */
+    margin-bottom: 0.5rem;
+    color: #000000; /* 카드 제목 검은색으로 변경 */
+}
+
+.project-card p {
+    font-size: 0.9rem; /* 프로젝트 설명 크기 감소 */
+}
+
+/* --- Skills 섹션 스타일 (신규 추가) --- */
+.skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 반응형 그리드 */
+    gap: 1.5rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0;
+}
+
+.skill-item i {
+    font-size: 3rem; /* 아이콘 크기 */
+    color: #4A4A4A; /* 새 짙은 회색 */
+    margin-bottom: 0.75rem;
+}
+
+.skill-item p {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* --- Contact 섹션 스타일 (신규 추가) --- */
+#contact {
+    background-color: #fff; /* 흰색 배경 유지 */
+    min-height: auto; /* 100vh 아님, 더 짧게 */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.contact-container {
+    flex-direction: column; /* 수직 정렬 */
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+
+.contact-container h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.contact-container p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.contact-link-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-link-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-link-box i {
+    font-size: 1.5rem;
+    color: #4A4A4A; /* 새 짙은 회색 */
+}
+
+
+/* --- 추가된 스타일 --- */
+
+/* 섹션 배경색 교차 적용 (가장 큰 변경) */
+main section:nth-of-type(even) {
+    background-color: #f8f8f8; /* 짝수 번째 섹션 배경을 아주 연한 회색으로 변경 */
+    color: #000000; /* 기본 텍스트 색상 검은색으로 */
+}
+
+/* 짙은 배경 위의 섹션 제목 (이제 연한 배경) */
+/* main section:nth-of-type(even) .section-title 규칙 제거 (모든 섹션 제목 색상 통일을 위해) */
+
+
+/* 푸터(Footer) 스타일 */
+footer {
+    text-align: center;
+    padding: 2rem 5%;
+    background-color: #333333; /* 푸터는 사이트를 마무리하는 어두운 색상 */
+    font-size: 0.9rem;
+    color: #aaaaaa; /* 텍스트 색상 연하게 변경 */
+    border-top: 1px solid #444444; /* 경계선 색상 변경 */
+}
+
+/* "맨 위로 가기" 버튼 스타일 */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #007bff; /* 파란색 유지 */
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0; /* 기본적으로 숨김 */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+    z-index: 500;
+}
+
+.back-to-top.show {
+    opacity: 1; /* 'show' 클래스가 추가되면 보이게 */
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: #0056b3; /* 파란색 호버 시 더 진한 파란색 */
+}
+
+/* 스크롤 애니메이션 스타일 */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    nav {
+        justify-content: space-between; /* space-between 유지 */
+        padding: 0.75rem 5%; /* 모바일에서도 패딩 동일하게 */
+    }
+
+    nav ul {
+        gap: 1rem; /* 모바일 간격 살짝 줄임 */
+    }
+
+    /* 토글 스위치 모바일 크기 (옵션) */
+    .toggle-label {
+        width: 50px;
+        height: 26px;
+    }
+    .toggle-label .ball {
+        width: 18px;
+        height: 18px;
+    }
+    #darkModeToggle:checked + .toggle-label .ball {
+        transform: translateX(24px);
+    }
+
+
+    /* --- 섹션 공통 모바일 (보완) --- */
+    .section-container {
+        flex-direction: column; /* 모든 섹션 컨테이너를 수직 정렬 */
+        gap: 2rem;
+    }
+
+    .section-title {
+        flex-basis: auto; /* 너비 자동 */
+        font-size: 2.5rem; /* 모바일용 섹션 제목 크기 */
+        text-align: center;
+    }
+
+    /* --- 홈 섹션 모바일 (신규) --- */
+    .home-container {
+        flex-direction: column-reverse; /* 모바일에선 이미지를 위로, 텍스트를 아래로 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+    }
+
+    #home .text-content {
+        flex-basis: auto; /* flex-basis 초기화 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+    }
+
+    #home h1, #home h2 {
+        font-size: 2.5rem; /* 모바일용 폰트 크기 */
+    }
+
+    #home .image-content {
+        flex-basis: auto; /* flex-basis 초기화 */
+        margin-bottom: 2rem; /* 텍스트와의 간격 */
+    }
+
+    #home .image-content img {
+        width: 300px; /* 모바일 이미지 크기 조정 */
+        height: 300px;
+        border-radius: 50%; /* 원형 유지 */
+    }
+
+    /* --- About 자기소개 모바일 (신규 추가) --- */
+    .about-description {
+        text-align: center; /* 모바일에선 중앙 정렬 */
+        padding: 0 1rem; /* 좌우 여백 */
+    }
+
+    /* --- About 그리드 모바일 (보완) --- */
+    .about-grid {
+        grid-template-columns: 1fr; /* 1열로 변경 */
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr; /* 프로젝트는 1열로 */
+        gap: 1.5rem;
+    }
+
+    /* --- 신규 섹션 모바일 스타일 --- */
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr); /* 모바일에선 3열 고정 */
+        gap: 0.75rem;
+    }
+    
+    .skill-item {
+        padding: 1rem;
+    }
+    
+    .skill-item i {
+        font-size: 2rem;
+    }
+    
+    .skill-item p {
+        font-size: 0.8rem;
+    }
+    
+    .contact-container h2 {
+        font-size: 2rem;
+    }
+
+    .contact-container p {
+        font-size: 1rem;
+    }
+    
+    .contact-link-box {
+        width: 100%; /* 모바일에선 링크 박스 꽉 차게 */
+        justify-content: center;
+    }
+}
+
+/* ---------------------------------
+--- 다크 모드 스타일 (신규 추가) ---
+---------------------------------
+*/
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* 다크 모드: 내비게이션 */
+body.dark-mode nav {
+    background-color: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode nav a {
+    color: #e0e0e0;
+}
+
+body.dark-mode nav a:hover {
+    color: #ffffff;
+}
+
+body.dark-mode nav a.active {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* 다크 모드: 홈 */
+body.dark-mode .name-highlight {
+    color: #8ab4f8; /* 어두운 배경에 어울리는 밝은 남색 */
+}
+
+/* --- 다크 모드 홈 섹션 자기소개 문구 (신규 추가) --- */
+body.dark-mode #home .intro-subtitle {
+    color: #b0b0b0; /* 다크 모드에서 밝은 회색 */
+}
+
+body.dark-mode #home .image-content img {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 다크 모드: 섹션 제목 */
+body.dark-mode .section-title {
+    color: #8ab4f8;
+}
+
+/* --- 다크 모드: About 자기소개 (신규 추가) --- */
+body.dark-mode .about-description {
+    color: #b0b0b0;
+}
+
+/* 다크 모드: 짝수 섹션 배경 */
+body.dark-mode main section:nth-of-type(even) {
+    background-color: #1a1a1a; /* 기본 배경보다 살짝 밝은 어두운색 */
+}
+
+/* 다크 모드: About 그리드 */
+body.dark-mode .about-grid .grid-item:hover {
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .about-grid .grid-item i {
+    color: #e0e0e0; /* 아이콘 색상 밝게 */
+}
+
+/* --- 수정 --- */
+/* 다크 모드: About 그리드 텍스트 색상 */
+body.dark-mode .about-grid .grid-item h3 {
+    color: #e0e0e0; /* 제목 텍스트 밝게 */
+}
+
+body.dark-mode .about-grid .grid-item p {
+    color: #b0b0b0; /* 본문 텍스트 밝게 */
+}
+/* --- 수정 끝 --- */
+
+
+/* 다크 모드: 프로젝트 카드 */
+body.dark-mode .project-card {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .project-card:hover {
+    background-color: #2c2c2c;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .project-card h3 {
+    color: #e0e0e0;
+}
+
+/* 다크 모드: Skills */
+body.dark-mode .skill-item {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .skill-item:hover {
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .skill-item i {
+    color: #e0e0e0;
+}
+
+/* 다크 모드: Contact */
+body.dark-mode #contact {
+    background-color: #121212; /* 짝수 섹션이 아니라 홀수 섹션이므로 */
+}
+
+body.dark-mode .contact-container p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .contact-link-box {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .contact-link-box:hover {
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .contact-link-box i {
+    color: #e0e0e0;
+}
+
+/* 다크 모드: 푸터 */
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    color: #888888;
+    border-top-color: #333333;
+}
+
+/* 다크 모드: 맨 위로 가기 버튼 */
+body.dark-mode .back-to-top {
+    background-color: #0056b3;
+    color: white;
+}
+
+body.dark-mode .back-to-top:hover {
+    background-color: #007bff;
 }

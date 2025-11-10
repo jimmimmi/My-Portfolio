@@ -1,104 +1,235 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 포트폴리오</title>
+    <!-- 스타일시트 연결 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 폰트어썸 (아이콘) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- 구글 폰트 (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- ===== Header / Nav ===== -->
-  <header class="site-header">
-    <nav class="nav">
-      <a class="logo" href="#hero">MyPortfolio</a>
-      <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- ===== Hero ===== -->
-  <section id="hero" class="hero">
-    <h1>안녕하세요, 저는 <span class="accent">Jimin Han</span> 입니다.</h1>
-    <p>웹 개발자 지망생 • HTML · CSS · JavaScript</p>
-    <a href="#projects" class="btn">프로젝트 보러가기</a>
-  </section>
-
-  <!-- ===== About ===== -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <div class="about-grid">
-      <img src="images/profile.jpg" alt="프로필 사진" class="avatar" />
-      <div>
-        <p>코딩을 배우며 작은 것부터 꾸준히 만들어가는 개발자입니다. 문제를 단순하게 정의하고, 사용자에게 가치를 주는 것을 즐깁니다.</p>
-        <ul class="tags">
-          <li>#HTML</li>
-          <li>#CSS</li>
-          <li>#JavaScript</li>
-          <li>#Responsive</li>
+    <!-- 내비게이션 바 -->
+    <nav>
+        <ul>
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <!-- 'Skills' 링크 추가 -->
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#project" class="nav-link">Project</a></li>
+            <!-- 'Contact' 링크 추가 -->
+            <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-      </div>
-    </div>
-  </section>
+        <!-- 다크 모드 토글 스위치 추가 -->
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle">
+            <label for="darkModeToggle" class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+    </nav>
 
-  <!-- ===== Projects ===== -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="grid">
-      <article class="card">
-        <h3>To‑Do List</h3>
-        <p>LocalStorage를 활용한 간단한 할일 관리 앱.</p>
-        <a href="#" class="link">Live</a>
-        <a href="#" class="link">Code</a>
-      </article>
-      <article class="card">
-        <h3>Random Quote</h3>
-        <p>버튼 클릭 시 랜덤 명언을 보여주는 위젯.</p>
-        <a href="#" class="link">Live</a>
-        <a href="#" class="link">Code</a>
-      </article>
-      <article class="card">
-        <h3>Weather App</h3>
-        <p>오픈 API로 가져오는 도시별 실시간 날씨.</p>
-        <a href="#" class="link">Live</a>
-        <a href="#" class="link">Code</a>
-      </article>
-    </div>
-  </section>
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <!-- 홈 섹션 -->
+        <section id="home">
+            <div class="section-container home-container">
+                <!-- 'fade-in-element' 클래스 추가 -->
+                <div class="text-content fade-in-element">
+                    <h1>안녕하세요,</h1>
+                    <h2>개발자</h2>
+                    <h2><span class="name-highlight">Jimin Han</span>입니다.</h2>
+                    <!-- 자기소개 문구 추가 -->
+                    <p class="intro-subtitle">웹 기술을 통해 아이디어를 실현하는 개발자입니다.</p>
+                </div>
+                <!-- 'fade-in-element' 클래스 추가 -->
+                <div class="image-content fade-in-element">
+                    <!-- 300x300 크기의 원형 이미지 플레이스홀더 -->
+                    <img src="images/profile.png" alt="프로필 사진">
+                </div>
+            </div>
+        </section>
 
-  <!-- ===== Contact ===== -->
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <form id="contactForm" class="contact-form" novalidate>
-      <div class="row">
-        <label>
-          이름
-          <input type="text" id="name" name="name" required placeholder="홍길동" />
-        </label>
-        <label>
-          이메일
-          <input type="email" id="email" name="email" required placeholder="me@example.com" />
-        </label>
-      </div>
-      <label>
-        메시지
-        <textarea id="message" name="message" required placeholder="안녕하세요! 협업 문의드립니다."></textarea>
-      </label>
-      <div class="actions">
-        <button type="submit" class="btn">보내기</button>
-        <span class="hint">* 제출 시 “감사합니다” 메시지와 함께 입력란이 초기화됩니다.</span>
-      </div>
-      <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-    </form>
-  </section>
+        <!-- About Me 섹션 (신규 삽입) -->
+        <section id="about">
+            <div class="section-container about-container">
+                <!-- 'fade-in-element' 클래스 추가 -->
+                <div class="section-title fade-in-element">
+                    <h2>About</h2>
+                    <h2>Me</h2>
+                </div>
+                <!-- 'fade-in-element' 클래스 추가 및 지연 효과(delay) 인라인 스타일 추가 -->
+                <!-- 소개 문구와 그리드를 묶는 래퍼 추가 -->
+                <div class="about-content fade-in-element" style="transition-delay: 100ms;">
+                    <!-- 세분화된 자기소개 (신규 추가) -->
+                    <div class="about-description">
+                        <p>
+                            저는 기술에 대한 깊은 호기심을 바탕으로 사용자의 문제를 해결하는 과정을 즐기는 개발자입니다.
+                            <br>현재는 효율적이고 확장 가능한 웹 애플리케이션 구축에 큰 관심을 두고 있습니다.
+                        </p>
+                    </div>
 
-  <footer class="site-footer">
-    <p>© 2025 My Portfolio • <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a></p>
-  </footer>
+                    <!-- 기존 그리드 (래퍼 안으로 이동) -->
+                    <div class="grid-container about-grid">
+                    <!-- 항목 1: 이름 -->
+                    <div class="grid-item">
+                        <i class="fas fa-user"></i>
+                        <h3>이름</h3>
+                        <p>Jimin Han</p>
+                    </div>
+                    <!-- 항목 2: 학력 -->
+                    <div class="grid-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>학력</h3>
+                        <p>공주대학교 산업공학과</p>
+                    </div>
+                    <!-- 항목 3: 이메일 -->
+                    <div class="grid-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>이메일</h3>
+                        <p>jiminhan125@gmail.com</p>
+                    </div>
+                    <!-- 항목 4: SNS -->
+                    <div class="grid-item">
+                        <i class="fa-brands fa-github"></i>
+                        <h3>SNS</h3>
+                        <p>GitHub: @jimmimmi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script src="app.js"></script>
+        <!-- Skills 섹션 (신규 추가) -->
+        <section id="skills">
+            <div class="section-container skills-container">
+                <!-- 'fade-in-element' 클래스 추가 -->
+                <div class="section-title fade-in-element">
+                    <h2>Skills</h2>
+                </div>
+                <!-- 'fade-in-element' 클래스 추가 및 지연 효과(delay) 인라인 스타일 추가 -->
+                <div class="grid-container skills-grid fade-in-element" style="transition-delay: 100ms;">
+                    <!-- 스킬 1 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-html5"></i>
+                        <p>HTML5</p>
+                    </div>
+                    <!-- 스킬 2 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-css3-alt"></i>
+                        <p>CSS3</p>
+                    </div>
+                    <!-- 스킬 3 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-js"></i>
+                        <p>JavaScript</p>
+                    </div>
+                    <!-- 스킬 4 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-react"></i>
+                        <p>React</p>
+                    </div>
+                    <!-- 스킬 5 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-node-js"></i>
+                        <p>Node.js</p>
+                    </div>
+                    <!-- 스킬 6 -->
+                    <div class="skill-item">
+                        <i class="fa-brands fa-git-alt"></i>
+                        <p>Git</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 섹션 -->
+        <section id="project">
+            <div class="section-container project-container">
+                <!-- 'fade-in-element' 클래스 추가 -->
+                <div class="section-title fade-in-element">
+                    <h2>Project</h2>
+                </div>
+                <!-- 'fade-in-element' 클래스 추가 및 지연 효과(delay) 인라인 스타일 추가 -->
+                <div class="grid-container project-grid fade-in-element" style="transition-delay: 100ms;">
+                    <!-- 프로젝트 1 -->
+                    <!-- project-link 클래스를 가진 <a> 태그로 감싸기 -->
+                    <a href="#" class="project-link">
+                        <div class="project-card">
+                            <img src="images/html.png" alt="프로젝트 1 이미지">
+                            <div class="project-info">
+                                <h3>Vibe Coding</h3>
+                                <p>나만의 portfolio site 제작</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 프로젝트 2 -->
+                    <a href="#" class="project-link">
+                        <div class="project-card">
+                            <img src="images/sqldb.png" alt="프로젝트 2 이미지">
+                            <div class="project-info">
+                                <h3>portfoilo DB</h3>
+                                <p>SQL을 이용한 portfoilo DB</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 프로젝트 3 -->
+                    <a href="#" class="project-link">
+                        <div class="project-card">
+                            <img src="images/web.png" alt="프로젝트 3 이미지">
+                            <div class="project-info">
+                                <h3>Web 개발 기초</h3>
+                                <p>html, css, js 무작정 따라하기</p>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 프로젝트 4 -->
+                    <a href="#" class="project-link">
+                        <div class="project-card">
+                            <img src="images/java.png" alt="프로젝트 4 이미지">
+                            <div class="project-info">
+                                <h3>Coffee Machine</h3>
+                                <p>JAVA programing 커피머신</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact 섹션 (신규 추가) -->
+    <section id="contact">
+        <div class="section-container contact-container fade-in-element">
+            <h2>Contact Me</h2>
+            <p>언제든지 편하게 연락주세요.</p>
+            <div class="contact-links">
+                <a href="mailto:example@email.com" class="contact-link-box">
+                    <i class="fas fa-envelope"></i>
+                    <span>jiminhan125@gmail.com</span>
+                </a>
+                <a href="https://github.com/username" target="_blank" rel="noopener noreferrer" class="contact-link-box">
+                    <i class="fa-brands fa-github"></i>
+                    <span>@jimmimmi on GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터(Footer) 추가 -->
+    <footer>
+        <p>&copy; 2025 이름. All Rights Reserved.</p>
+    </footer>
+
+    <!-- "맨 위로 가기" 버튼 추가 -->
+    <a href="#home" class="back-to-top" title="맨 위로 가기"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- 자바스크립트 파일 연결 -->
+    <script src="app.js"></script>
 </body>
 </html>
